@@ -11,14 +11,14 @@ import java.util.List;
 
 public class App implements TakeAwayBill
 {
-	@Override
-	public double getOrderPrice(List<MenuItem> itemsOrdered) throws TakeAwayBillException {
-		double totale = 0;
+    @Override
+    public double getOrderPrice(List<MenuItem> itemsOrdered) throws TakeAwayBillException {
+        double totale = 0;
 
         for (int i = 0; i < itemsOrdered.size(); i++) {
             totale += itemsOrdered.get(i).getPrice();
         }
 
-		return totale;
-	}
+        return totale;
+    }
 }
