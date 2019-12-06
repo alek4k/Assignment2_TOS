@@ -17,27 +17,38 @@ public class App implements TakeAwayBill
         double totale = 0;
         int numPanini = 0;
         double prezzoMin = -1;
+        double totalePF = 0;
 
         for (int i = 0; i < itemsOrdered.size(); i++) {
+            double prezzoCorrente = itemsOrdered.get(i).getPrice();
+
             // #1
-            totale += itemsOrdered.get(i).getPrice();
+            totale += prezzoCorrente;
             
-            // #2
             if (itemsOrdered.get(i).getType() == ItemType.PANINI) {
                 numPanini += 1;
-                double prezzoCorrente = itemsOrdered.get(i).getPrice();
                 if (prezzoMin == -1) {
                     prezzoMin = itemsOrdered.get(i).getPrice();
                 }
                 else if (prezzoMin > prezzoCorrente) {
                     prezzoMin = prezzoCorrente;
                 }
+                totalePF += prezzoCorrente;
+            }
+            else if (itemsOrdered.get(i).getType() == ItemType.FRITTI) {
+                totalePF += prezzoCorrente;
             }
         }
         
+        // #2
         if (numPanini > 5) {
             totale -= prezzoMin;
             totale += prezzoMin * 0.5;
+        }
+        
+        // #3
+        if (totalePF > 50) {
+            totale -= totale / 10;
         }
 
         return totale;
