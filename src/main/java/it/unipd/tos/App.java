@@ -18,6 +18,10 @@ public class App implements TakeAwayBill
         int numPanini = 0;
         double prezzoMin = -1;
         double totalePF = 0;
+        
+        if (itemsOrdered.size() > 30) {
+            throw new TakeAwayBillException("Non è consentita un'ordinazione con più di 30 elementi.");
+        }
 
         for (int i = 0; i < itemsOrdered.size(); i++) {
             double prezzoCorrente = itemsOrdered.get(i).getPrice();
