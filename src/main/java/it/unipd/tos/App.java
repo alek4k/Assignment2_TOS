@@ -19,6 +19,7 @@ public class App implements TakeAwayBill
         double prezzoMin = -1;
         double totalePF = 0;
         
+        // #4
         if (itemsOrdered.size() > 30) {
             throw new TakeAwayBillException("Non è consentita un'ordinazione con più di 30 elementi.");
         }
@@ -53,6 +54,11 @@ public class App implements TakeAwayBill
         // #3
         if (totalePF > 50) {
             totale -= totale / 10;
+        }
+        
+        // #5
+        if (totale < 10) {
+            totale += 0.50;
         }
 
         return totale;
